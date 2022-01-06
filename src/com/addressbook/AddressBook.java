@@ -17,6 +17,8 @@ public class AddressBook {
 		System.out.println("Welcome to Address Book System");
 
 		addContact(scanner);
+		editContact(scanner);
+		showContacts();
 	}
 
 	public static String validateFirstName(String firstName, Scanner scanner) {
@@ -143,5 +145,65 @@ public class AddressBook {
 
 		addressBook.add(contact);
 		System.out.println("Contact has been saved.");
+	}
+
+	private static void editContact(Scanner scanner) {
+		System.out.println("Which contact you want to Edit? (Enter the First name)");
+		String firstName = scanner.nextLine();
+
+		Contact editContact = null;
+		for (int i = 0; i < addressBook.size(); i++) {
+			if (firstName.equals(addressBook.get(i).getFirstname())) {
+				editContact = addressBook.get(i);
+			}
+		}
+
+		if (editContact == null) {
+			System.out.println("No contact found with name " + firstName + ".");
+		} else {
+			editContactDetails(editContact, scanner);
+		}
+	}
+
+	private static void editContactDetails(Contact editContact, Scanner scanner) {
+		System.out.println("Enter First Name: ");
+		String firstName = scanner.nextLine();
+		editContact.setFirstname(validateFirstName(firstName, scanner));
+
+		System.out.println("Enter Last Name: ");
+		String lname = scanner.nextLine();
+		editContact.setLastname(validateLastName(lname, scanner));
+
+		System.out.println("Enter City : ");
+		String city = scanner.nextLine();
+		editContact.setCity(validateCity(city, scanner));
+
+		System.out.println("Enter state : ");
+		String state = scanner.nextLine();
+		editContact.setState(validateState(state, scanner));
+
+		System.out.println("Enter Zip Code: ");
+		String zip = scanner.nextLine();
+		editContact.setZipcode(validateZipcode(zip, scanner));
+
+		System.out.println("Enter Your Email: ");
+		String email = scanner.nextLine();
+		editContact.setEmail(validateEmail(email, scanner));
+
+		System.out.println("Enter Phone Number: ");
+		String phoneNumber = scanner.nextLine();
+		editContact.setPhonenumber(validatePhone(phoneNumber, scanner));
+
+		System.out.println("Contact has been edited.");
+	}
+
+	private static void showContacts() {
+		if (addressBook.isEmpty()) {
+			System.out.println("Address book is empty.");
+		} else {
+			for (Contact contact : addressBook) {
+				System.out.println(contact);
+			}
+		}
 	}
 }
