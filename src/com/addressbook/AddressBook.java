@@ -18,7 +18,9 @@ public class AddressBook {
 		System.out.println("Welcome to Address Book System");
 
 		while (!isExit) {
+
 			System.out.println("Select the option from below");
+
 			if (addressBook.isEmpty()) {
 				System.out.println("1. Add Contact" + "\n5. Exit");
 			} else {
@@ -179,7 +181,7 @@ public class AddressBook {
 		System.out.println("Enter phone  number: ");
 		String phone = scanner.nextLine();
 		contact.setPhonenumber(validatePhone(phone, scanner));
-	
+
 		System.out.println("Contact has been saved.");
 	}
 
