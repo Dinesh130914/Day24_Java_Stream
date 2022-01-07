@@ -179,8 +179,7 @@ public class AddressBook {
 		System.out.println("Enter phone  number: ");
 		String phone = scanner.nextLine();
 		contact.setPhonenumber(validatePhone(phone, scanner));
-
-		addressBook.add(contact);
+	
 		System.out.println("Contact has been saved.");
 	}
 
