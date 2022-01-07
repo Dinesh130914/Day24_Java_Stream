@@ -67,7 +67,10 @@ public class AddressBook {
 
 			case "7":
 				isExit = true;
+				System.out.println("Sorted By Name");
 				sortedAddressbook();
+				System.out.println("Sorted by City");
+				sortedAddressbookWithCity();
 				break;
 
 			default:
@@ -302,6 +305,14 @@ public class AddressBook {
 	private static void sortedAddressbook() 
 	{
 		Comparator<Contact> nameComparator = Comparator.comparing(Contact::getFirstname);
+		 addressBook.stream()
+				.sorted(nameComparator)
+				.forEach(System.out::println);;
+	}
+	
+	private static void sortedAddressbookWithCity() 
+	{
+		Comparator<Contact> nameComparator = Comparator.comparing(Contact::getCity);
 		 addressBook.stream()
 				.sorted(nameComparator)
 				.forEach(System.out::println);;
