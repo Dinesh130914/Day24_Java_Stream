@@ -305,7 +305,5 @@ public class AddressBook {
 		 addressBook.stream()
 				.sorted(nameComparator)
 				.forEach(System.out::println);;
-		
-		
 	}
 }
