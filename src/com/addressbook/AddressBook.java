@@ -1,10 +1,14 @@
 package com.addressbook;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -63,7 +67,7 @@ public class AddressBook {
 
 			case "7":
 				isExit = true;
-				showContacts();
+				sortedAddressbook();
 				break;
 
 			default:
@@ -293,5 +297,15 @@ public class AddressBook {
 
 		long count = addressBook.stream().filter(contacts -> contacts.getState().equalsIgnoreCase(state)).count();
 		System.out.println("Number Of Contacts :" + count);
+	}
+	
+	private static void sortedAddressbook() 
+	{
+		Comparator<Contact> nameComparator = Comparator.comparing(Contact::getFirstname);
+		 addressBook.stream()
+				.sorted(nameComparator)
+				.forEach(System.out::println);;
+		
+		
 	}
 }
