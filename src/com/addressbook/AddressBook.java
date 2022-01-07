@@ -22,11 +22,11 @@ public class AddressBook {
 
 			if (addressBook.isEmpty()) {
 
-				System.out.println("1. Add Contact" + "\n6. Exit");
+				System.out.println("1. Add Contact\n" + "6.Number Contacts\n7. Exit");
 			} else {
 
 				System.out.println("1. Add Contact"
-						+ "\n2. Display Contact\n3. Edit Contact\n4.Delete Contact\n5.Search(By City)\n 6.Exit");
+						+ "\n2. Display Contact\n3. Edit Contact\n4.Delete Contact\n5.Search(By City)\n6.Number Of Contacts\n 7.Exit");
 			}
 
 			String option = scanner.nextLine();
@@ -51,7 +51,17 @@ public class AddressBook {
 			case "5":
 				searchCity(scanner);
 				break;
+
 			case "6":
+
+				if (!addressBook.isEmpty()) {
+					numOfContacts(scanner);
+				} else {
+					System.out.println("No Contacts");
+				}
+				break;
+
+			case "7":
 				isExit = true;
 				showContacts();
 				break;
@@ -185,7 +195,7 @@ public class AddressBook {
 		System.out.println("Enter phone  number: ");
 		String phone = scanner.nextLine();
 		contact.setPhonenumber(validatePhone(phone, scanner));
-		
+
 		addressBook.add(contact);
 		System.out.println("Contact has been saved.");
 	}
@@ -272,6 +282,16 @@ public class AddressBook {
 		System.out.println("Search the name by using City");
 		String city = scanner.nextLine();
 
-		 addressBook.stream().filter(contacts -> contacts.getCity().equalsIgnoreCase(city)).forEach(System.out::println);;
+		addressBook.stream().filter(contacts -> contacts.getCity().equalsIgnoreCase(city)).forEach(System.out::println);
+		;
+	}
+
+	private static void numOfContacts(Scanner scanner) {
+
+		System.out.println("Number of contacts by using state");
+		String state = scanner.next();
+
+		long count = addressBook.stream().filter(contacts -> contacts.getState().equalsIgnoreCase(state)).count();
+		System.out.println("Number Of Contacts :" + count);
 	}
 }
